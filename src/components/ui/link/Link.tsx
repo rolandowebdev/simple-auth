@@ -1,5 +1,6 @@
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib'
 import NextLink from 'next/link'
+import React from 'react'
 
 type LinkProps = {
 	children: React.ReactNode

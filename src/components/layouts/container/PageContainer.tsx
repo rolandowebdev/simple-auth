@@ -1,4 +1,5 @@
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib'
+import React from 'react'
 
 export type PageContainerProps = {
 	children: React.ReactNode

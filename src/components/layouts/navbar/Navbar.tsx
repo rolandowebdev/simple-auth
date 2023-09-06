@@ -2,9 +2,9 @@
 
 import { IconButton, Link } from '@/components'
 import { useTheme } from '@/hooks'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib'
 import { useEffect, useState } from 'react'
-import { FiMoon, FiSun, FiLogIn, FiUser, FiUserCheck } from 'react-icons/fi'
+import { FiLogIn, FiMoon, FiSun, FiUser, FiUserCheck } from 'react-icons/fi'
 
 export function Navbar() {
 	const [mounted, setMounted] = useState(false)

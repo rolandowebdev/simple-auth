@@ -1,19 +1,11 @@
+import '@fontsource/plus-jakarta-sans/400.css'
+import '@fontsource/plus-jakarta-sans/500.css'
+import '@fontsource/plus-jakarta-sans/600.css'
+import '@fontsource/plus-jakarta-sans/700.css'
 import '@/styles/global.css'
 
-import { ThemeProvider } from '@/components/theme-provider'
+import { Navbar, RootContainer, ThemeProvider } from '@/components'
 import type { Metadata } from 'next'
-import { Inter, Josefin_Sans } from 'next/font/google'
-
-const josefinSans = Josefin_Sans({
-	subsets: ['latin'],
-	variable: '--font-josefin-sans',
-	weight: ['400', '500', '600', '700']
-})
-
-const inter = Inter({
-	subsets: ['latin'],
-	variable: '--font-inter'
-})
 
 export const metadata: Metadata = {
 	title: 'Simple Auth',
@@ -28,12 +20,12 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body suppressHydrationWarning={true}>
-				<main
-					className={`${inter.variable} ${josefinSans.variable} font-sans flex justify-center min-h-screen`}>
-					<ThemeProvider attribute='class' defaultTheme='light' enableSystem>
+				<ThemeProvider attribute='class'>
+					<RootContainer>
+						<Navbar />
 						{children}
-					</ThemeProvider>
-				</main>
+					</RootContainer>
+				</ThemeProvider>
 			</body>
 		</html>
 	)

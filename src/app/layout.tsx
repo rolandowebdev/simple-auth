@@ -1,5 +1,19 @@
+import '@/styles/global.css'
+
+import { ThemeProvider } from '@/components/theme-provider'
 import type { Metadata } from 'next'
-import { Providers } from '@/app/providers'
+import { Inter, Josefin_Sans } from 'next/font/google'
+
+const josefinSans = Josefin_Sans({
+	subsets: ['latin'],
+	variable: '--font-josefin-sans',
+	weight: ['400', '500', '600', '700']
+})
+
+const inter = Inter({
+	subsets: ['latin'],
+	variable: '--font-inter'
+})
 
 export const metadata: Metadata = {
 	title: 'Simple Auth',
@@ -14,7 +28,12 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body suppressHydrationWarning={true}>
-				<Providers>{children}</Providers>
+				<main
+					className={`${inter.variable} ${josefinSans.variable} font-sans flex justify-center min-h-screen`}>
+					<ThemeProvider attribute='class' defaultTheme='light' enableSystem>
+						{children}
+					</ThemeProvider>
+				</main>
 			</body>
 		</html>
 	)

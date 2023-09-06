@@ -1,11 +1,10 @@
-'use client'
-
-import { Container, Text } from '@chakra-ui/react'
-
 export default function Home() {
 	return (
-		<Container maxW='container.md'>
-			<Text as='p'>Kon&apos;nichiwa sekai</Text>
-		</Container>
+		<section className='text-center'>
+			<h1 className='font-heading text-3xl font-bold'>
+				Kon&apos;nichiwa sekai
+			</h1>
+			<p className='text-lg'>and everyone in this world</p>
+		</section>
 	)
 }

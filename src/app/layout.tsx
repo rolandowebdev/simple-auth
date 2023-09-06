@@ -1,11 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import { Providers } from '@/app/providers'
 
 export const metadata: Metadata = {
 	title: 'Simple Auth',
-	description: 'Simple auth system in Next.js'
+	description: 'Simple auth system in Next.js 13'
 }
 
 export default function RootLayout({
@@ -15,7 +13,9 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className={inter.className}>{children}</body>
+			<body suppressHydrationWarning={true}>
+				<Providers>{children}</Providers>
+			</body>
 		</html>
 	)
 }

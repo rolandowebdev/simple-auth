@@ -9,13 +9,11 @@ export type User = {
 
 export type SingleUserResponse = {
 	status: string
-	message: string
 	data: { user: User }
 }
 
 export type AllUsersResponse = {
 	status: string
-	message: string
 	data: { users: User[] }
 }
 

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { authUser } from '@/lib'
+import { apiAuthUser } from '@/lib'
 import { useStore } from '@/store'
 
 export function useSession() {
@@ -7,7 +7,7 @@ export function useSession() {
 
 	const fetchUser = async () => {
 		try {
-			const user = await authUser()
+			const user = await apiAuthUser()
 			store.setAuthUser(user)
 		} catch (error: any) {
 			store.reset()

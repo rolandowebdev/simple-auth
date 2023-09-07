@@ -5,7 +5,7 @@ import {
 	LoginUserInput,
 	LoginUserSchema,
 	handleApiError,
-	loginUser
+	apiLoginUser
 } from '@/lib'
 import { useStore } from '@/store'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -31,8 +31,8 @@ export function LoginForm() {
 	const LoginUserFunction = async (credentials: LoginUserInput) => {
 		store.setRequestLoading(true)
 		try {
-			await loginUser(JSON.stringify(credentials))
-			toast.success('Logged in successfully')
+			await apiLoginUser(JSON.stringify(credentials))
+			toast.success('Successfully logged in')
 			return router.push('/dashboard')
 		} catch (error: any) {
 			if (error instanceof Error) {

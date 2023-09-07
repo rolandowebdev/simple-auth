@@ -5,7 +5,7 @@ import {
 	RegisterUserInput,
 	RegisterUserSchema,
 	handleApiError,
-	registerUser
+	apiRegisterUser
 } from '@/lib'
 import { useStore } from '@/store'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -31,7 +31,8 @@ export function RegisterForm() {
 	const RegisterUserFunction = async (credentials: RegisterUserInput) => {
 		store.setRequestLoading(true)
 		try {
-			const user = await registerUser(JSON.stringify(credentials))
+			const user = await apiRegisterUser(JSON.stringify(credentials))
+			toast.success('Successfully registered')
 			store.setAuthUser(user)
 			return router.push('/login')
 		} catch (error: any) {
@@ -57,10 +58,10 @@ export function RegisterForm() {
 	return (
 		<FormProvider {...methods}>
 			<FormContainer onSubmit={handleSubmit(onSubmitHandler)}>
-				<Input type='text' name='username' label='Full Name' />
+				<Input type='text' name='name' label='Full Name' />
 				<Input type='email' name='email' label='Email' />
 				<InputPassword name='password' label='Password' />
-				<InputPassword name='confirmPassword' label='Confirm Password' />
+				<InputPassword name='passwordConfirm' label='Confirm Password' />
 				<Button
 					type='submit'
 					loading={store.requestLoading}

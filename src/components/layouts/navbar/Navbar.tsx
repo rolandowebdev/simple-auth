@@ -2,7 +2,7 @@
 
 import { IconButton, Link } from '@/components'
 import { useSession, useTheme } from '@/hooks'
-import { cn, logoutUser } from '@/lib'
+import { cn, apiLogoutUser } from '@/lib'
 import { useStore } from '@/store'
 import { useRouter } from 'next/navigation'
 import {
@@ -17,8 +17,8 @@ import {
 export function Navbar() {
 	const { isLight, setTheme } = useTheme()
 
-	const store = useStore()
 	const user = useSession()
+	const store = useStore()
 	const router = useRouter()
 
 	const handleToggelTheme = () => {
@@ -28,7 +28,7 @@ export function Navbar() {
 	const handleLogout = async () => {
 		store.setRequestLoading(true)
 		try {
-			await logoutUser()
+			await apiLogoutUser()
 		} catch (error) {
 		} finally {
 			store.reset()
@@ -48,15 +48,6 @@ export function Navbar() {
 						<FiUserCheck /> SimpleAuth
 					</Link>
 					<ul className='flex items-center gap-4'>
-						{user && (
-							<li className='cursor-pointer' onClick={handleLogout}>
-								<IconButton
-									label='Logout'
-									className='flex items-center gap-1 p-0 hover:bg-transparent dark:hover:bg-transparent hover:text-brand-blue hover:underline dark:hover:text-brand-sky'>
-									<FiLogOut /> Logout
-								</IconButton>
-							</li>
-						)}
 						{!user && (
 							<>
 								<li>
@@ -71,7 +62,15 @@ export function Navbar() {
 								</li>
 							</>
 						)}
-
+						{user && (
+							<li className='cursor-pointer' onClick={handleLogout}>
+								<IconButton
+									label='Logout'
+									className='flex items-center gap-1 p-0 hover:bg-transparent dark:hover:bg-transparent hover:text-brand-blue hover:underline dark:hover:text-brand-sky'>
+									<FiLogOut /> Logout
+								</IconButton>
+							</li>
+						)}
 						<li>
 							<IconButton label='Toggle theme' onClick={handleToggelTheme}>
 								{isLight ? <FiMoon /> : <FiSun />}

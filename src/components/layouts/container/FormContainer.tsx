@@ -5,7 +5,7 @@ export interface FormContainer
 
 export const FormContainer = ({ children, ...rest }: FormContainer) => {
 	return (
-		<form className='w-80 flex flex-col gap-4 mt-8 mb-4' {...rest}>
+		<form className='w-80 flex flex-col gap-2 mt-8 mb-4' {...rest}>
 			{children}
 		</form>
 	)

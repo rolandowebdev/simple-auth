@@ -30,6 +30,7 @@ export const InputPassword = ({
 			<div className='relative'>
 				<input
 					id={name}
+					aria-label={label}
 					type={isPasswordVisible ? 'text' : 'password'}
 					className={cn(
 						'flex h-9 w-full px-3 py-1',
@@ -61,7 +62,7 @@ export const InputPassword = ({
 				)}
 			</div>
 			{errors[name] && (
-				<span className='text-red-500 text-xs pt-1 block'>
+				<span className='text-red-400 text-xs pt-1 block'>
 					{errors[name]?.message as string}
 				</span>
 			)}

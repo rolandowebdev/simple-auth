@@ -1,16 +1,11 @@
-import { Button, FormContainer, Input, Link, PageContainer } from '@/components'
-import { InputPassword } from '@/components'
+import { Link, PageContainer } from '@/components'
+import { RegisterForm } from './register-form'
 
-export default function Register() {
+export default function RegisterPage() {
 	return (
 		<PageContainer>
 			<h1 className='text-3xl font-bold'>Register Page</h1>
-			<FormContainer>
-				<Input type='text' name='username' label='Username' />
-				<InputPassword name='password' label='Password' />
-				<InputPassword name='confirmPassword' label='Confirm Password' />
-				<Button>Register</Button>
-			</FormContainer>
+			<RegisterForm />
 			<p>
 				Already have an account?{' '}
 				<Link url='/login' className='text-brand-blue'>

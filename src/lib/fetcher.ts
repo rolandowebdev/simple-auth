@@ -23,7 +23,7 @@ async function handleResponse<T>(response: Response): Promise<T> {
 	return data as T
 }
 
-export async function register(credentials: string): Promise<User> {
+export async function registerUser(credentials: string): Promise<User> {
 	const response = await fetch(`${SERVER_ENDPOINT}/api/auth/register`, {
 		method: 'POST',
 		credentials: 'include',
@@ -38,7 +38,7 @@ export async function register(credentials: string): Promise<User> {
 	)
 }
 
-export async function login(credentials: string): Promise<string> {
+export async function loginUser(credentials: string): Promise<string> {
 	const response = await fetch(`${SERVER_ENDPOINT}/api/auth/login`, {
 		method: 'POST',
 		credentials: 'include',
@@ -51,7 +51,7 @@ export async function login(credentials: string): Promise<string> {
 	return handleResponse<UserLoginResponse>(response).then((data) => data.token)
 }
 
-export async function logout(): Promise<void> {
+export async function logoutUser(): Promise<void> {
 	const response = await fetch(`${SERVER_ENDPOINT}/api/auth/logout`, {
 		method: 'GET',
 		credentials: 'include',

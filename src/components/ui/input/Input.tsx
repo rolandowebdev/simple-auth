@@ -1,3 +1,5 @@
+'use client'
+
 import { cn } from '@/lib'
 import { useFormContext } from 'react-hook-form'
 
@@ -25,6 +27,7 @@ export const Input = ({
 			<input
 				id={name}
 				type={type}
+				aria-label={label}
 				className={cn(
 					'flex h-9 w-full px-3 py-1',
 					'bg-transparent text-sm shadow-sm transition-colors',
@@ -37,7 +40,7 @@ export const Input = ({
 				{...rest}
 			/>
 			{errors[name] && (
-				<span className='text-red-500 text-xs pt-1 block'>
+				<span className='text-red-400 text-xs pt-1 block'>
 					{errors[name]?.message as string}
 				</span>
 			)}

@@ -15,9 +15,7 @@ model User {
   name      String
   email     String    @unique
   password  String
-  role      String?   @default("user")
   photo     String?   @default("default.png")
-  verified  Boolean?  @default(false)
   createdAt DateTime? @default(now())
   updatedAt DateTime? @updatedAt
 }

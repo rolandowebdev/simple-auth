@@ -1,11 +1,18 @@
 import { cn } from '@/lib'
+import { Spinner } from '..'
 
 export interface ButtonProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	children: React.ReactNode
+	loading: boolean
 }
 
-export const Button = ({ children, className, ...rest }: ButtonProps) => {
+export const Button = ({
+	children,
+	loading = false,
+	className,
+	...rest
+}: ButtonProps) => {
 	return (
 		<button
 			className={cn(
@@ -17,7 +24,7 @@ export const Button = ({ children, className, ...rest }: ButtonProps) => {
 				className
 			)}
 			{...rest}>
-			{children}
+			{loading ? <Spinner /> : <span>{children}</span>}
 		</button>
 	)
 }

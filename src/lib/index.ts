@@ -1,3 +1,4 @@
+export * from './fetcher'
 export * from './helpers'
 export * from './prisma'
 export * from './token'

@@ -1,4 +1,4 @@
-import { Button, FormContainer, Input, PageContainer } from '@/components'
+import { Button, FormContainer, Input, Link, PageContainer } from '@/components'
 import { InputPassword } from '@/components'
 
 export default function Register() {
@@ -11,6 +11,12 @@ export default function Register() {
 				<InputPassword name='confirmPassword' label='Confirm Password' />
 				<Button>Register</Button>
 			</FormContainer>
+			<p>
+				Already have an account?{' '}
+				<Link url='/login' className='text-brand-blue'>
+					Login
+				</Link>
+			</p>
 		</PageContainer>
 	)
 }

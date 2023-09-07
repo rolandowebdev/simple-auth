@@ -1,4 +1,4 @@
-import { Button, FormContainer, Input, PageContainer } from '@/components'
+import { Button, FormContainer, Input, Link, PageContainer } from '@/components'
 import { InputPassword } from '@/components'
 
 export default function Login() {
@@ -10,6 +10,12 @@ export default function Login() {
 				<InputPassword name='password' label='Password' />
 				<Button>Login</Button>
 			</FormContainer>
+			<p>
+				New to SimpleAuth?{' '}
+				<Link url='/register' className='text-brand-blue'>
+					Register
+				</Link>
+			</p>
 		</PageContainer>
 	)
 }

@@ -1,19 +1,17 @@
 import { cn } from '@/lib'
-import React from 'react'
 
-type IconButtonProps = {
-	children: React.ReactNode
-	className?: string
+export interface IconButtonProps
+	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	label: string
-	onClick: () => void
+	children: React.ReactNode
 }
 
-export function IconButton({
+export const IconButton = ({
+	label,
 	children,
 	className,
-	label,
 	...rest
-}: IconButtonProps) {
+}: IconButtonProps) => {
 	return (
 		<button
 			className={cn(
@@ -28,3 +26,5 @@ export function IconButton({
 		</button>
 	)
 }
+
+IconButton.displayName = 'IconButton'

@@ -1,5 +1,3 @@
-import React from 'react'
-
 export interface FormContainer
 	extends React.FormHTMLAttributes<HTMLFormElement> {
 	children: React.ReactNode

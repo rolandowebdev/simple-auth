@@ -1,5 +1,5 @@
 import { cn } from '@/lib'
-import React from 'react'
+import { forwardRef } from 'react'
 
 export interface InputProps
 	extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -7,7 +7,7 @@ export interface InputProps
 	label: string
 }
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
 	({ name, type, label, className, ...rest }: InputProps, ref) => {
 		return (
 			<div className='flex flex-col gap-1'>

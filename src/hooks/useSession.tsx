@@ -2,7 +2,7 @@ import { authUser } from '@/lib'
 import { useStore } from '@/store'
 import { useEffect } from 'react'
 
-export default function useSession() {
+export function useSession() {
 	const store = useStore()
 
 	async function fetchUser() {

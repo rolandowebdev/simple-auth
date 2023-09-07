@@ -4,7 +4,7 @@ import { Spinner } from '..'
 export interface ButtonProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	children: React.ReactNode
-	loading: boolean
+	loading?: boolean
 }
 
 export const Button = ({

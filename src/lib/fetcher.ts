@@ -68,9 +68,8 @@ export async function authUser(token?: string): Promise<User> {
 		'Content-Type': 'application/json'
 	}
 
-	if (token) {
-		headers['Authorization'] = `Bearer ${token}`
-	}
+	if (token) headers['Authorization'] = `Bearer ${token}`
+
 	const response = await fetch(`${SERVER_ENDPOINT}/api/users/me`, {
 		method: 'GET',
 		credentials: 'include',
@@ -82,13 +81,17 @@ export async function authUser(token?: string): Promise<User> {
 	)
 }
 
-export async function getAllUsers(): Promise<User[]> {
+export async function getAllUsers(token?: string): Promise<User[]> {
+	const headers: Record<string, string> = {
+		'Content-Type': 'application/json'
+	}
+
+	if (token) headers['Authorization'] = `Bearer ${token}`
+
 	const response = await fetch(`${SERVER_ENDPOINT}/api/users`, {
 		method: 'GET',
 		credentials: 'include',
-		headers: {
-			'Content-Type': 'application/json'
-		}
+		headers
 	})
 
 	return handleResponse<AllUsersResponse>(response).then(

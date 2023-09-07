@@ -48,20 +48,6 @@ export function Navbar() {
 						<FiUserCheck /> SimpleAuth
 					</Link>
 					<ul className='flex items-center gap-4'>
-						{!user && (
-							<>
-								<li>
-									<Link url='/register' className='flex items-center gap-1'>
-										<FiUser /> Register
-									</Link>
-								</li>
-								<li>
-									<Link url='/login' className='flex items-center gap-1'>
-										<FiLogIn /> Login
-									</Link>
-								</li>
-							</>
-						)}
 						{user && (
 							<li className='cursor-pointer' onClick={handleLogout}>
 								<IconButton
@@ -71,6 +57,21 @@ export function Navbar() {
 								</IconButton>
 							</li>
 						)}
+						{!user && (
+							<>
+								<li>
+									<Link url='/login' className='flex items-center gap-1'>
+										<FiLogIn /> Login
+									</Link>
+								</li>
+								<li>
+									<Link url='/register' className='flex items-center gap-1'>
+										<FiUser /> Register
+									</Link>
+								</li>
+							</>
+						)}
+
 						<li>
 							<IconButton label='Toggle theme' onClick={handleToggelTheme}>
 								{isLight ? <FiMoon /> : <FiSun />}

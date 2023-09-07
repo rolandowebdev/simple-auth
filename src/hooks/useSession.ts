@@ -1,11 +1,11 @@
+import { useEffect } from 'react'
 import { authUser } from '@/lib'
 import { useStore } from '@/store'
-import { useEffect } from 'react'
 
 export function useSession() {
 	const store = useStore()
 
-	async function fetchUser() {
+	const fetchUser = async () => {
 		try {
 			const user = await authUser()
 			store.setAuthUser(user)

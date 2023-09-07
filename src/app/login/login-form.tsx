@@ -2,10 +2,10 @@
 
 import { Button, FormContainer, Input, InputPassword } from '@/components'
 import {
-	RegisterUserInput,
-	RegisterUserSchema,
+	LoginUserInput,
+	LoginUserSchema,
 	handleApiError,
-	registerUser
+	loginUser
 } from '@/lib'
 import { useStore } from '@/store'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -14,12 +14,12 @@ import { useEffect } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 
-export function RegisterForm() {
+export function LoginForm() {
 	const store = useStore()
 	const router = useRouter()
 
-	const methods = useForm<RegisterUserInput>({
-		resolver: zodResolver(RegisterUserSchema)
+	const methods = useForm<LoginUserInput>({
+		resolver: zodResolver(LoginUserSchema)
 	})
 
 	const {
@@ -28,12 +28,12 @@ export function RegisterForm() {
 		formState: { isSubmitSuccessful }
 	} = methods
 
-	const RegisterUserFunction = async (credentials: RegisterUserInput) => {
+	const LoginUserFunction = async (credentials: LoginUserInput) => {
 		store.setRequestLoading(true)
 		try {
-			const user = await registerUser(JSON.stringify(credentials))
-			store.setAuthUser(user)
-			return router.push('/login')
+			await loginUser(JSON.stringify(credentials))
+			toast.success('Logged in successfully')
+			return router.push('/dashboard')
 		} catch (error: any) {
 			if (error instanceof Error) {
 				handleApiError(error)
@@ -46,26 +46,28 @@ export function RegisterForm() {
 		}
 	}
 
-	const onSubmitHandler: SubmitHandler<RegisterUserInput> = (values) => {
-		RegisterUserFunction(values)
+	const onSubmitHandler: SubmitHandler<LoginUserInput> = (values) => {
+		LoginUserFunction(values)
 	}
 
 	useEffect(() => {
 		if (isSubmitSuccessful) reset()
 	}, [isSubmitSuccessful])
 
+	useEffect(() => {
+		store.reset()
+	}, [])
+
 	return (
 		<FormProvider {...methods}>
 			<FormContainer onSubmit={handleSubmit(onSubmitHandler)}>
-				<Input type='text' name='username' label='Full Name' />
 				<Input type='email' name='email' label='Email' />
 				<InputPassword name='password' label='Password' />
-				<InputPassword name='confirmPassword' label='Confirm Password' />
 				<Button
 					type='submit'
 					loading={store.requestLoading}
 					className='flex justify-center items-center'>
-					Register
+					Login
 				</Button>
 			</FormContainer>
 		</FormProvider>

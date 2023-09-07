@@ -46,7 +46,7 @@ export async function middleware(req: NextRequest) {
 		}
 
 		return NextResponse.redirect(
-			new URL(`/login?${new URLSearchParams({ error: 'badauth' })}`, req.url)
+			new URL(`/login?${new URLSearchParams({ error: 'bad-auth' })}`, req.url)
 		)
 	}
 
@@ -65,12 +65,12 @@ export async function middleware(req: NextRequest) {
 	}
 
 	if (req.url.includes('/login') && authUser) {
-		return NextResponse.redirect(new URL('/profile', req.url))
+		return NextResponse.redirect(new URL('/dashboard', req.url))
 	}
 
 	return response
 }
 
 export const config = {
-	matcher: ['/profile', '/login', '/api/users/:path*', '/api/auth/logout']
+	matcher: ['/dashboard', '/login', '/api/users/:path*', '/api/auth/logout']
 }

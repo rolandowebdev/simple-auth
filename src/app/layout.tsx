@@ -6,6 +6,7 @@ import '@/styles/global.css'
 
 import { Navbar, RootContainer, ThemeProvider } from '@/components'
 import type { Metadata } from 'next'
+import { Toaster } from 'react-hot-toast'
 
 export const metadata: Metadata = {
 	title: 'Simple Auth',
@@ -24,6 +25,7 @@ export default function RootLayout({
 					<RootContainer>
 						<Navbar />
 						{children}
+						<Toaster />
 					</RootContainer>
 				</ThemeProvider>
 			</body>

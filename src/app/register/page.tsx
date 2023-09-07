@@ -1,7 +1,7 @@
 import { Link, PageContainer } from '@/components'
 import { RegisterForm } from './register-form'
 
-export default function RegisterPage() {
+export default async function RegisterPage() {
 	return (
 		<PageContainer>
 			<h1 className='text-3xl font-bold'>Register Page</h1>

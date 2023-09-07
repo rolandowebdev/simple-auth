@@ -1,5 +1,5 @@
 export * from './helpers'
 export * from './prisma'
+export * from './token'
 export * from './utils'
 export * from './validations'
-export * from './token'

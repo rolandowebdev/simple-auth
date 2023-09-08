@@ -40,7 +40,7 @@ export const Input = ({
 				{...rest}
 			/>
 			{errors[name] && (
-				<span className='text-red-400 text-xs pt-1 block'>
+				<span className='text-red-400 text-xs pt-1 block transition-all duration-300'>
 					{errors[name]?.message as string}
 				</span>
 			)}

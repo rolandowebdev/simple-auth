@@ -25,7 +25,7 @@ export const InputPassword = ({
 	} = useFormContext()
 
 	return (
-		<div className={cn('flex flex-col gap-1')}>
+		<div className='flex flex-col gap-1'>
 			<label htmlFor={name}>{label}</label>
 			<div className='relative'>
 				<input
@@ -33,7 +33,7 @@ export const InputPassword = ({
 					aria-label={label}
 					type={isPasswordVisible ? 'text' : 'password'}
 					className={cn(
-						'flex h-9 w-full px-3 py-1',
+						'flex h-9 w-full px-3 py-1 pr-9',
 						'bg-transparent text-sm shadow-sm transition-colors',
 						'rounded-md border border-brand-dark dark:border-brand-light',
 						'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
@@ -62,7 +62,7 @@ export const InputPassword = ({
 				)}
 			</div>
 			{errors[name] && (
-				<span className='text-red-400 text-xs pt-1 block'>
+				<span className='text-red-400 text-xs pt-1 block transition duration-300'>
 					{errors[name]?.message as string}
 				</span>
 			)}

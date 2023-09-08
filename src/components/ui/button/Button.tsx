@@ -17,10 +17,10 @@ export const Button = ({
 		<button
 			className={cn(
 				'rounded-md',
-				'w-full py-2 px-4',
 				'bg-brand-blue hover:bg-brand-sky',
 				'text-lg font-semibold text-brand-light',
 				'transition-[background-color] duration-300',
+				'flex justify-center items-center w-full py-2 px-4',
 				className
 			)}
 			{...rest}>

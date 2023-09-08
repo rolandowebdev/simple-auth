@@ -1,10 +1,11 @@
 'use client'
 
-import { IconButton, Link } from '@/components'
+import { IconButton, Link, Modal } from '@/components'
 import { useTheme } from '@/hooks'
 import { cn, apiLogoutUser } from '@/lib'
 import { useStore } from '@/store'
 import { useRouter } from 'next/navigation'
+import { toast } from 'react-hot-toast'
 import {
 	FiLogIn,
 	FiLogOut,
@@ -32,10 +33,12 @@ export function Navbar({ isLogin = false }: NavbarProps) {
 		store.setRequestLoading(true)
 		try {
 			await apiLogoutUser()
+			toast.success('Successfully logged out')
+			return router.push('/login')
 		} catch (error) {
 		} finally {
+			store.setRequestLoading(false)
 			store.reset()
-			router.push('/login')
 		}
 	}
 
@@ -68,12 +71,13 @@ export function Navbar({ isLogin = false }: NavbarProps) {
 							</>
 						)}
 						{isLogin && (
-							<li className='cursor-pointer' onClick={handleLogout}>
-								<IconButton
-									label='Logout'
-									className='flex items-center gap-1 p-0 hover:bg-transparent dark:hover:bg-transparent hover:text-brand-blue hover:underline dark:hover:text-brand-sky'>
-									<FiLogOut /> Logout
-								</IconButton>
+							<li className='cursor-pointer'>
+								<Modal
+									title='Logout'
+									text='Are you sure you want to logout?'
+									loading={store.requestLoading}
+									handleLogout={handleLogout}
+								/>
 							</li>
 						)}
 						<li>

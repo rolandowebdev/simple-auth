@@ -62,10 +62,7 @@ export function RegisterForm() {
 				<Input type='email' name='email' label='Email' />
 				<InputPassword name='password' label='Password' />
 				<InputPassword name='passwordConfirm' label='Confirm Password' />
-				<Button
-					type='submit'
-					loading={store.requestLoading}
-					className='flex justify-center items-center mt-2'>
+				<Button type='submit' loading={store.requestLoading} className='mt-2'>
 					Register
 				</Button>
 			</FormContainer>

@@ -56,7 +56,7 @@ export async function middleware(req: NextRequest) {
 		return NextResponse.redirect(
 			new URL(
 				`/login?${new URLSearchParams({
-					error: 'badauth',
+					error: 'bad-auth',
 					forceLogin: 'true'
 				})}`,
 				req.url

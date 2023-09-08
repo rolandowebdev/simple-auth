@@ -1,4 +1,4 @@
-import { AuthPageInvisible, PageContainer } from '@/components'
+import { AuthPageInvisible, Navbar, PageContainer } from '@/components'
 import { getAllUsers } from '@/lib'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
@@ -10,6 +10,7 @@ export default async function DashboardPage() {
 
 	return (
 		<>
+			<Navbar isLogin={true} />
 			<PageContainer>
 				<h1>Dashboard Page</h1>
 				<div className='grid grid-cols-4 gap-4'>

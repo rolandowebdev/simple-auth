@@ -1,7 +1,7 @@
 'use client'
 
 import { IconButton, Link } from '@/components'
-import { useSession, useTheme } from '@/hooks'
+import { useTheme } from '@/hooks'
 import { cn, apiLogoutUser } from '@/lib'
 import { useStore } from '@/store'
 import { useRouter } from 'next/navigation'
@@ -14,10 +14,13 @@ import {
 	FiUserCheck
 } from 'react-icons/fi'
 
-export function Navbar() {
+type NavbarProps = {
+	isLogin?: boolean
+}
+
+export function Navbar({ isLogin = false }: NavbarProps) {
 	const { isLight, setTheme } = useTheme()
 
-	const user = useSession()
 	const store = useStore()
 	const router = useRouter()
 
@@ -44,11 +47,13 @@ export function Navbar() {
 						'mx-auto flex w-full max-w-5xl justify-between items-center p-4',
 						'transition-[background-color] duration-300'
 					)}>
-					<Link url='/' className='flex items-center gap-2'>
+					<Link
+						url={isLogin ? '/dashboard' : '/'}
+						className='flex items-center gap-2'>
 						<FiUserCheck /> SimpleAuth
 					</Link>
 					<ul className='flex items-center gap-4'>
-						{!user && (
+						{!isLogin && (
 							<>
 								<li>
 									<Link url='/login' className='flex items-center gap-1'>
@@ -62,7 +67,7 @@ export function Navbar() {
 								</li>
 							</>
 						)}
-						{user && (
+						{isLogin && (
 							<li className='cursor-pointer' onClick={handleLogout}>
 								<IconButton
 									label='Logout'

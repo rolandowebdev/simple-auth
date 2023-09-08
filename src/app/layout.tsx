@@ -4,7 +4,7 @@ import '@fontsource/plus-jakarta-sans/600.css'
 import '@fontsource/plus-jakarta-sans/700.css'
 import '@/styles/global.css'
 
-import { Navbar, RootContainer, ThemeProvider } from '@/components'
+import { RootContainer, ThemeProvider } from '@/components'
 import type { Metadata } from 'next'
 import { Toaster } from 'react-hot-toast'
 
@@ -23,7 +23,6 @@ export default function RootLayout({
 			<body suppressHydrationWarning={true}>
 				<ThemeProvider attribute='class'>
 					<RootContainer>
-						<Navbar />
 						{children}
 						<Toaster />
 					</RootContainer>

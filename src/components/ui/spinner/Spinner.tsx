@@ -17,7 +17,7 @@ export function Spinner({
 		<svg
 			role='status'
 			className={cn(
-				'mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-brand-blue',
+				'mr-2 text-gray-200 animate-spin dark:text-brand-light fill-brand-blue',
 				`${color} ${bgColor}`
 			)}
 			style={{ height, width }}

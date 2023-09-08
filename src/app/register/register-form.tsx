@@ -65,7 +65,7 @@ export function RegisterForm() {
 				<Button
 					type='submit'
 					loading={store.requestLoading}
-					className='flex justify-center items-center'>
+					className='flex justify-center items-center mt-2'>
 					Register
 				</Button>
 			</FormContainer>

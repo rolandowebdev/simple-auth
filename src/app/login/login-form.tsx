@@ -66,7 +66,7 @@ export function LoginForm() {
 				<Button
 					type='submit'
 					loading={store.requestLoading}
-					className='flex justify-center items-center'>
+					className='flex justify-center items-center mt-2'>
 					Login
 				</Button>
 			</FormContainer>

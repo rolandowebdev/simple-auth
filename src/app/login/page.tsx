@@ -11,7 +11,7 @@ export default async function LoginPage() {
 				<p>
 					New to SimpleAuth?{' '}
 					<Link url='/register' className='text-brand-blue'>
-						Register
+						Create Account
 					</Link>
 				</p>
 			</PageContainer>

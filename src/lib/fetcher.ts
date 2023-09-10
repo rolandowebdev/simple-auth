@@ -6,7 +6,9 @@ import {
 } from '@/types'
 
 const SERVER_ENDPOINT =
-	process.env.SERVER_ENDPOINT || process.env.LOCAL_ENDPOINT
+	process.env.NODE_ENV === 'production'
+		? 'https://simple-auth-beta-sigma.vercel.app'
+		: 'http://localhost:3000'
 
 async function handleResponse<T>(response: Response): Promise<T> {
 	const contentType = response.headers.get('Content-Type') || ''

@@ -1,11 +1,16 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+	const origin = req.headers.get('origin')
+
 	const response = new NextResponse(
 		JSON.stringify({ status: 'success', message: 'successfully logout' }),
 		{
 			status: 200,
-			headers: { 'Content-Type': 'application/json' }
+			headers: {
+				'Access-Control-Allow-Origin': origin || '*',
+				'Content-Type': 'application/json'
+			}
 		}
 	)
 

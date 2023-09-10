@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 import { Button, IconButton } from '..'
 import { FiLogOut, FiX } from 'react-icons/fi'
+import { useStore } from '@/store'
 
 type ModalProps = {
 	title: string
@@ -12,7 +12,7 @@ type ModalProps = {
 }
 
 export const Modal = ({ title, text, loading, handleLogout }: ModalProps) => {
-	const [showModal, setShowModal] = useState(false)
+	const { showModal, setShowModal } = useStore()
 	return (
 		<>
 			<IconButton

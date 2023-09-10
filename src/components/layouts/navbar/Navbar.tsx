@@ -2,61 +2,54 @@
 
 import { IconButton, Link, Modal } from '@/components'
 import { useTheme } from '@/hooks'
-import { cn, apiLogoutUser } from '@/lib'
+import { apiLogoutUser, handleApiError } from '@/lib'
 import { useStore } from '@/store'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { toast } from 'react-hot-toast'
-import {
-	FiLogIn,
-	FiLogOut,
-	FiMoon,
-	FiSun,
-	FiUser,
-	FiUserCheck
-} from 'react-icons/fi'
+import { FiLogIn, FiMoon, FiSun, FiUser, FiUserCheck } from 'react-icons/fi'
 
-type NavbarProps = {
-	isLogin?: boolean
-}
-
-export function Navbar({ isLogin = false }: NavbarProps) {
-	const { isLight, setTheme } = useTheme()
-
-	const store = useStore()
+export function Navbar() {
+	const path = usePathname()
 	const router = useRouter()
+
+	const { reset, requestLoading, setRequestLoading, setShowModal } = useStore()
+	const { isLight, setTheme } = useTheme()
 
 	const handleToggelTheme = () => {
 		setTheme(isLight ? 'dark' : 'light')
 	}
 
 	const handleLogout = async () => {
-		store.setRequestLoading(true)
+		setRequestLoading(true)
 		try {
 			await apiLogoutUser()
+			router.push('/login')
+			setShowModal(false)
 			toast.success('Successfully logged out')
-			return router.push('/login')
-		} catch (error) {
+		} catch (error: any) {
+			if (error instanceof Error) {
+				handleApiError(error)
+			} else {
+				toast.error(error.message)
+				console.log('Error message:', error.message)
+			}
 		} finally {
-			store.setRequestLoading(false)
-			store.reset()
+			setRequestLoading(false)
+			reset()
 		}
 	}
 
 	return (
 		<>
 			<header>
-				<nav
-					className={cn(
-						'mx-auto flex w-full max-w-5xl justify-between items-center p-4',
-						'transition-[background-color] duration-300'
-					)}>
-					<Link
-						url={isLogin ? '/dashboard' : '/'}
-						className='flex items-center gap-2'>
+				<nav className='mx-auto flex w-full max-w-5xl justify-between items-center p-4 transition-[background-color] duration-300'>
+					<span
+						className='flex items-center gap-2 font-medium
+		hover:text-brand-blue hover:underline dark:hover:text-brand-sky'>
 						<FiUserCheck /> SimpleAuth
-					</Link>
+					</span>
 					<ul className='flex items-center gap-4'>
-						{!isLogin && (
+						{path !== '/dashboard' ? (
 							<>
 								<li>
 									<Link url='/login' className='flex items-center gap-1'>
@@ -69,13 +62,12 @@ export function Navbar({ isLogin = false }: NavbarProps) {
 									</Link>
 								</li>
 							</>
-						)}
-						{isLogin && (
+						) : (
 							<li className='cursor-pointer'>
 								<Modal
 									title='Logout'
 									text='Are you sure you want to logout?'
-									loading={store.requestLoading}
+									loading={requestLoading}
 									handleLogout={handleLogout}
 								/>
 							</li>

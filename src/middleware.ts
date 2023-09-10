@@ -13,7 +13,7 @@ export async function middleware(req: NextRequest) {
 
 	if (req.cookies.has('token')) {
 		token = req.cookies.get('token')?.value
-	} else if (req.headers.get('Authorization')?.startsWith('Bearer')) {
+	} else if (req.headers.get('Authorization')?.startsWith('Bearer ')) {
 		token = req.headers.get('Authorization')?.substring(7)
 	}
 
@@ -52,7 +52,7 @@ export async function middleware(req: NextRequest) {
 
 	const authUser = (req as AuthenticatedRequest).user
 
-	if (!authUser) {
+	if (!authUser || !token) {
 		return NextResponse.redirect(
 			new URL(
 				`/login?${new URLSearchParams({

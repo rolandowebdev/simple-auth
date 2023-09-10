@@ -32,8 +32,8 @@ export function LoginForm() {
 		store.setRequestLoading(true)
 		try {
 			await apiLoginUser(JSON.stringify(credentials))
+			router.push('/dashboard')
 			toast.success('Successfully logged in')
-			return router.push('/dashboard')
 		} catch (error: any) {
 			if (error instanceof Error) {
 				handleApiError(error)

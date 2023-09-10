@@ -32,9 +32,9 @@ export function RegisterForm() {
 		store.setRequestLoading(true)
 		try {
 			const user = await apiRegisterUser(JSON.stringify(credentials))
-			toast.success('Successfully registered')
 			store.setAuthUser(user)
-			return router.push('/login')
+			router.push('/login')
+			toast.success('Successfully registered')
 		} catch (error: any) {
 			if (error instanceof Error) {
 				handleApiError(error)

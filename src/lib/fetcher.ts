@@ -5,7 +5,8 @@ import {
 	AllUsersResponse
 } from '@/types'
 
-const SERVER_ENDPOINT = 'http://localhost:3000' || process.env.SERVER_ENDPOINT
+const SERVER_ENDPOINT =
+	process.env.SERVER_ENDPOINT || process.env.LOCAL_ENDPOINT
 
 async function handleResponse<T>(response: Response): Promise<T> {
 	const contentType = response.headers.get('Content-Type') || ''

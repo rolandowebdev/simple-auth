@@ -41,7 +41,7 @@ export function Navbar() {
 
 	return (
 		<>
-			<header>
+			<header className='sticky top-0 shadow-md bg-brand-light dark:bg-brand-dark'>
 				<nav className='mx-auto flex w-full max-w-5xl justify-between items-center p-4 transition-[background-color] duration-300'>
 					<span
 						className='flex items-center gap-2 font-medium

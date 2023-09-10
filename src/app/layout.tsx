@@ -4,7 +4,7 @@ import '@fontsource/plus-jakarta-sans/600.css'
 import '@fontsource/plus-jakarta-sans/700.css'
 import '@/styles/global.css'
 
-import { Navbar, RootContainer, ThemeProvider } from '@/components'
+import { Footer, Navbar, RootContainer, ThemeProvider } from '@/components'
 import type { Metadata } from 'next'
 import { Toaster } from 'react-hot-toast'
 
@@ -25,6 +25,7 @@ export default function RootLayout({
 					<RootContainer>
 						<Navbar />
 						{children}
+						<Footer />
 						<Toaster />
 					</RootContainer>
 				</ThemeProvider>

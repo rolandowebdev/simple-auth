@@ -9,21 +9,25 @@ export async function GET() {
 		}
 	)
 
+	const deleteTokenCookie = {
+		name: 'token',
+		value: '',
+		maxAge: -1,
+		path: '/',
+		secure: true
+	}
+
+	const deleteLoggedInCookie = {
+		name: 'logged-in',
+		value: '',
+		maxAge: -1,
+		path: '/',
+		secure: true
+	}
+
 	await Promise.all([
-		response.cookies.set({
-			name: 'token',
-			value: '',
-			maxAge: -1,
-			path: '/',
-			secure: process.env.NODE_ENV !== 'development'
-		}),
-		response.cookies.set({
-			name: 'logged-in',
-			value: '',
-			maxAge: -1,
-			path: '/',
-			secure: process.env.NODE_ENV !== 'development'
-		})
+		response.cookies.set(deleteTokenCookie),
+		response.cookies.set(deleteLoggedInCookie)
 	])
 
 	return response

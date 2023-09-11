@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
 		const cookieOptions = {
 			name: 'token',
 			value: token,
+			httpOnly: true,
 			path: '/',
 			secure: process.env.NODE_ENV !== 'development',
 			maxAge: tokenMaxAge

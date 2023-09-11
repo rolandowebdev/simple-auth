@@ -12,17 +12,17 @@ export async function GET() {
 	const deleteTokenCookie = {
 		name: 'token',
 		value: '',
-		maxAge: -1,
+		maxAge: 0,
 		path: '/',
-		secure: true
+		secure: process.env.NODE_ENV !== 'development'
 	}
 
 	const deleteLoggedInCookie = {
 		name: 'logged-in',
 		value: '',
-		maxAge: -1,
+		maxAge: 0,
 		path: '/',
-		secure: true
+		secure: process.env.NODE_ENV !== 'development'
 	}
 
 	await Promise.all([

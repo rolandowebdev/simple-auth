@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
-export async function GET(req: NextRequest) {
+export async function GET() {
 	const response = new NextResponse(
 		JSON.stringify({ status: 'success', message: 'successfully logout' }),
 		{
@@ -13,12 +13,16 @@ export async function GET(req: NextRequest) {
 		response.cookies.set({
 			name: 'token',
 			value: '',
-			maxAge: -1
+			maxAge: -1,
+			path: '/',
+			secure: process.env.NODE_ENV !== 'development'
 		}),
 		response.cookies.set({
 			name: 'logged-in',
 			value: '',
-			maxAge: -1
+			maxAge: -1,
+			path: '/',
+			secure: process.env.NODE_ENV !== 'development'
 		})
 	])
 

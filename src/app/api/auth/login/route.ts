@@ -11,8 +11,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { ZodError } from 'zod'
 
 export async function POST(req: NextRequest) {
-	const origin = req.headers.get('origin')
-
 	try {
 		const body = (await req.json()) as LoginUserInput
 		const data = LoginUserSchema.parse(body)
@@ -46,10 +44,7 @@ export async function POST(req: NextRequest) {
 			}),
 			{
 				status: 200,
-				headers: {
-					'Access-Control-Allow-Origin': origin || '*',
-					'Content-Type': 'application/json'
-				}
+				headers: { 'Content-Type': 'application/json' }
 			}
 		)
 

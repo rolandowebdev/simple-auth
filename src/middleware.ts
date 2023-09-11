@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getErrorResponse, verifyJWT } from '@/lib'
 
-const allowedOrigins =
-	process.env.NODE_ENV === 'production'
-		? 'https://simple-auth-beta-sigma.vercel.app'
-		: 'http://localhost:3000'
-
 interface AuthenticatedRequest extends NextRequest {
 	user: {
 		id: string
@@ -14,18 +9,7 @@ interface AuthenticatedRequest extends NextRequest {
 
 let redirectToLogin = false
 export async function middleware(req: NextRequest) {
-	const origin = req.headers.get('origin')
 	let token: string | undefined
-
-	if (origin && !allowedOrigins.includes(origin)) {
-		return new NextResponse(null, {
-			status: 400,
-			statusText: 'Bad request',
-			headers: {
-				'Content-Type': 'text/plain'
-			}
-		})
-	}
 
 	if (req.cookies.has('token')) {
 		token = req.cookies.get('token')?.value

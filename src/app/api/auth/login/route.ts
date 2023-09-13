@@ -27,15 +27,6 @@ export async function POST(req: NextRequest) {
 		const token = await signJWT({ sub: user.id }, { exp: `${JWT_EXPIRES_IN}m` })
 		const tokenMaxAge = parseInt(JWT_EXPIRES_IN) * 60
 
-		const cookieOptions = {
-			name: 'token',
-			value: token,
-			httpOnly: true,
-			path: '/',
-			secure: process.env.NODE_ENV !== 'development',
-			maxAge: tokenMaxAge
-		}
-
 		const response = new NextResponse(
 			JSON.stringify({
 				status: 'success',
@@ -49,7 +40,14 @@ export async function POST(req: NextRequest) {
 		)
 
 		await Promise.all([
-			response.cookies.set(cookieOptions),
+			response.cookies.set({
+				name: 'token',
+				value: token,
+				httpOnly: true,
+				path: '/',
+				secure: process.env.NODE_ENV !== 'development',
+				maxAge: tokenMaxAge
+			}),
 			response.cookies.set({
 				name: 'logged-in',
 				value: 'true',

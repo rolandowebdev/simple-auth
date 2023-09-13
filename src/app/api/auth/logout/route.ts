@@ -10,8 +10,8 @@ export async function GET() {
 	)
 
 	await Promise.all([
-		response.cookies.delete('token'),
-		response.cookies.delete('logged-in')
+		response.cookies.set('token', '', { maxAge: 0 }),
+		response.cookies.set('logged-in', '', { maxAge: 0 })
 	])
 
 	return response

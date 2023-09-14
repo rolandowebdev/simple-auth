@@ -17,7 +17,7 @@ const nextConfig = {
 					{ key: 'Access-Control-Allow-Credentials', value: 'true' },
 					{
 						key: 'Access-Control-Allow-Origin',
-						value: 'https://simple-auth-beta-sigma.vercel.app'
+						value: 'https://simple-auth-git-preview-rolandowebdev.vercel.app'
 					},
 					{
 						key: 'Access-Control-Allow-Methods',

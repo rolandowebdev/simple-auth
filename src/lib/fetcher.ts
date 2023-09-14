@@ -5,7 +5,8 @@ import {
 	AllUsersResponse
 } from '@/types'
 
-const SERVER_ENDPOINT = 'https://simple-auth-beta-sigma.vercel.app'
+const SERVER_ENDPOINT =
+	'https://simple-auth-git-preview-rolandowebdev.vercel.app'
 
 async function handleResponse<T>(response: Response): Promise<T> {
 	const contentType = response.headers.get('Content-Type') || ''

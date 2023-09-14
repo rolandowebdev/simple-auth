@@ -9,10 +9,7 @@ export async function GET() {
 		}
 	)
 
-	await Promise.all([
-		response.cookies.set('token', '', { httpOnly: true, maxAge: 0 }),
-		response.cookies.set('logged-in', '', { maxAge: 0 })
-	])
+	response.cookies.set('token', '', { httpOnly: true, expires: new Date(0) })
 
 	return response
 }

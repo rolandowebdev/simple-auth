@@ -7,18 +7,17 @@ interface AuthenticatedRequest extends NextRequest {
 	}
 }
 
-let redirectToLogin = false
 export async function middleware(req: NextRequest) {
 	let token: string | undefined
+
+	const path = req.nextUrl.pathname
+	const isPublicPath = path === '/' || path === '/login' || path === '/register'
 
 	if (req.cookies.has('token')) {
 		token = req.cookies.get('token')?.value
 	} else if (req.headers.get('Authorization')?.startsWith('Bearer ')) {
 		token = req.headers.get('Authorization')?.substring(7)
 	}
-
-	if (req.nextUrl.pathname.startsWith('/login') && (!token || redirectToLogin))
-		return
 
 	if (
 		!token &&
@@ -40,7 +39,6 @@ export async function middleware(req: NextRequest) {
 			;(req as AuthenticatedRequest).user = { id: sub }
 		}
 	} catch (error) {
-		redirectToLogin = true
 		if (req.nextUrl.pathname.startsWith('/api')) {
 			return getErrorResponse(401, "Token is invalid or user doesn't exists")
 		}
@@ -50,27 +48,24 @@ export async function middleware(req: NextRequest) {
 		)
 	}
 
-	const authUser = (req as AuthenticatedRequest).user
-
-	if (!authUser || !token) {
-		return NextResponse.redirect(
-			new URL(
-				`/login?${new URLSearchParams({
-					error: 'bad-auth',
-					forceLogin: 'true'
-				})}`,
-				req.url
-			)
-		)
+	if (!isPublicPath && !token) {
+		return NextResponse.redirect(new URL('/', req.nextUrl))
 	}
 
-	if (req.url.includes('/login') && authUser) {
-		return NextResponse.redirect(new URL('/dashboard', req.url))
+	if (isPublicPath && token) {
+		return NextResponse.redirect(new URL('/dashboard', req.nextUrl))
 	}
 
 	return response
 }
 
 export const config = {
-	matcher: ['/dashboard', '/login', '/api/users/:path*', '/api/auth/logout']
+	matcher: [
+		'/',
+		'/dashboard',
+		'/login',
+		'/register',
+		'/api/users/:path*',
+		'/api/auth/logout'
+	]
 }

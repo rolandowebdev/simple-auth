@@ -23,7 +23,7 @@ export function Navbar() {
 		setRequestLoading(true)
 		try {
 			await apiLogoutUser()
-			router.push('/login')
+			router.push('/')
 			setShowModal(false)
 			toast.success('Successfully logged out')
 		} catch (error: any) {
@@ -43,11 +43,9 @@ export function Navbar() {
 		<>
 			<header className='sticky top-0 shadow-md bg-brand-light dark:bg-brand-dark'>
 				<nav className='mx-auto flex w-full max-w-5xl justify-between items-center p-4 transition-[background-color] duration-300'>
-					<span
-						className='flex items-center gap-2 font-medium
-		hover:text-brand-blue hover:underline dark:hover:text-brand-sky'>
+					<Link url='/' className='flex items-center gap-2'>
 						<FiUserCheck /> SimpleAuth
-					</span>
+					</Link>
 					<ul className='flex items-center gap-4'>
 						{path !== '/dashboard' ? (
 							<>

@@ -33,6 +33,7 @@ export function LoginForm() {
 		try {
 			await apiLoginUser(JSON.stringify(credentials))
 			router.push('/dashboard')
+			router.refresh()
 			toast.success('Successfully logged in')
 		} catch (error: any) {
 			if (error instanceof Error) {

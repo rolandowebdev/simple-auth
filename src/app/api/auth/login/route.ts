@@ -23,9 +23,7 @@ export async function POST(req: NextRequest) {
 			return getErrorResponse(401, 'Invalid email or password')
 		}
 
-		const JWT_EXPIRES_IN = getEnvVariable('JWT_EXPIRES_IN')
-		const token = await signJWT({ sub: user.id }, { exp: `${JWT_EXPIRES_IN}m` })
-		const tokenMaxAge = parseInt(JWT_EXPIRES_IN) * 60
+		const token = await signJWT({ sub: user.id }, { exp: '1d' })
 
 		const response = new NextResponse(
 			JSON.stringify({
@@ -39,15 +37,9 @@ export async function POST(req: NextRequest) {
 			}
 		)
 
-		await Promise.all([
-			response.cookies.set('token', token, {
-				httpOnly: true,
-				maxAge: tokenMaxAge
-			}),
-			response.cookies.set('logged-in', 'true', {
-				maxAge: tokenMaxAge
-			})
-		])
+		response.cookies.set('token', token, {
+			httpOnly: true
+		})
 
 		return response
 	} catch (error: any) {

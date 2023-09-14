@@ -40,17 +40,11 @@ export async function POST(req: NextRequest) {
 		)
 
 		await Promise.all([
-			response.cookies.set({
-				name: 'token',
-				value: token,
+			response.cookies.set('token', token, {
 				httpOnly: true,
-				path: '/',
-				secure: process.env.NODE_ENV !== 'development',
 				maxAge: tokenMaxAge
 			}),
-			response.cookies.set({
-				name: 'logged-in',
-				value: 'true',
+			response.cookies.set('logged-in', 'true', {
 				maxAge: tokenMaxAge
 			})
 		])

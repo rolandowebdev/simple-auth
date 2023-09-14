@@ -17,10 +17,7 @@ const nextConfig = {
 					{ key: 'Access-Control-Allow-Credentials', value: 'true' },
 					{
 						key: 'Access-Control-Allow-Origin',
-						value:
-							process.env.NODE_ENV === 'production'
-								? 'https://simple-auth-beta-sigma.vercel.app'
-								: 'http://localhost:3000'
+						value: 'https://simple-auth-beta-sigma.vercel.app'
 					},
 					{
 						key: 'Access-Control-Allow-Methods',
